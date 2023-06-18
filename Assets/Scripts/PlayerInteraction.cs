@@ -11,7 +11,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private string interactionTag;
 
     private bool isInteracting = false;
-    public UnityEvent InteractionEvent;
+    //public UnityEvent InteractionEvent;
+    public event Action<GameObject> InteractionEvent;
 
     void Update()
     {
@@ -23,7 +24,7 @@ public class PlayerInteraction : MonoBehaviour
                 GameObject hitObject = interactionHit.collider.gameObject;
 
                 if (hitObject.CompareTag(interactionTag)){
-                    InteractionEvent?.Invoke();
+                    InteractionEvent?.Invoke(hitObject);
                 }
             }
         }
